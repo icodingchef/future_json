@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:futurejson/info.dart';
+import 'info.dart';
 import 'package:http/http.dart' as http;
-import 'dart:async';
+//import 'dart:async';
 import 'dart:convert';
 
 void main() {
@@ -12,7 +12,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final Future<Info> info;
-  const MyApp({this.info});
+  const MyApp({Key? key, required this.info});
 
   @override
   Widget build(BuildContext context) {
@@ -35,19 +35,19 @@ class MyApp extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      '고객번호: ' + snapshot.data.id.toString(),
+                      '고객번호: ' + snapshot.data!.id.toString(),
                       style: TextStyle(fontSize: 20.0),
                     ),
                     Text(
-                      '고객명: ' + snapshot.data.userName.toString(),
+                      '고객명: ' + snapshot.data!.userName.toString(),
                       style: TextStyle(fontSize: 20.0),
                     ),
                     Text(
-                      '계좌 아이디: ' + snapshot.data.account.toString(),
+                      '계좌 아이디: ' + snapshot.data!.account.toString(),
                       style: TextStyle(fontSize: 20.0),
                     ),
                     Text(
-                      '잔액: ' + snapshot.data.balance.toString() + '원',
+                      '잔액: ' + snapshot.data!.balance.toString() + '원',
                       style: TextStyle(fontSize: 20.0),
                     ),
                   ],
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
 
 Future<Info> fetchInfo() async {
   final response =
-      await http.get('https://my.api.mockaroo.com/bank.json?key=fea24270');
+      await http.get(Uri.parse('https://my.api.mockaroo.com/bank.json?key=fea24270'));
 
   if (response.statusCode == 200) {
     return Info.fromJson(json.decode(response.body));
