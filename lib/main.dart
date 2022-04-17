@@ -5,15 +5,24 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 void main() {
-  runApp(MyApp(
-    info: fetchInfo(),
-  ));
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  final Future<Info> info;
-  const MyApp({Key? key, required this.info});
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late Future<Info> info;
+
+  @override
+  void initState() {
+    super.initState();
+    info = fetchInfo();
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
