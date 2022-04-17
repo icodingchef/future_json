@@ -59,6 +59,12 @@ class _MyAppState extends State<MyApp> {
                       '잔액: ' + snapshot.data!.balance.toString() + '원',
                       style: TextStyle(fontSize: 20.0),
                     ),
+                    SizedBox(height: 40,),
+                    ElevatedButton(child: Text('Read Again'), onPressed: () {
+                      setState(() {
+                        info = fetchInfo();
+                      });
+                    })
                   ],
                 );
               } else if (snapshot.hasError) {
