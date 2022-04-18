@@ -4,7 +4,11 @@ class Info {
   final int account;
   final int balance;
 
-  Info({this.id, this.userName, this.account, this.balance});
+  Info({
+    required this.id,
+    required this.userName,
+    required this.account,
+    required this.balance});
 
   factory Info.fromJson(Map<dynamic, dynamic> json) {
     return Info(
